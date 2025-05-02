@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشروع خادم الويب بلغة C++98</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: start;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: fadeIn 1.2s ease forwards;
+        }
+        header h1 {
+            font-size: 3rem;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .profile img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            margin-bottom: 1rem;
+        }
+        .profile h2 {
+            font-size: 1.4rem;
+            color: #2563eb;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            padding: 2rem;
+            max-width: 900px;
+            margin: 1.5rem;
+            backdrop-filter: blur(8px);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+        .card h2 {
+            color: #2563eb;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        .card p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            font-size: 1.05rem;
+            color: #334155;
+        }
+        .epoll {
+            color: #16a34a;
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: auto;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 3rem;
+            color: #475569;
+        }
+        @keyframes fadeIn {
+            0% {opacity: 0; transform: translateY(-20px);}
+            100% {opacity: 1; transform: translateY(0);}
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>رحلتنا مع خادم الويب بلغة C++98</h1>
+</header>
+
+<div class="profile">
+    <img src="file.jpg" alt="صورة الملف الشخصي">
+    <h2>مرحباً، نحن المطورون</h2>
+</div>
+
+<div class="card">
+    <h2>نظرة عامة على المشروع</h2>
+    <p>هذا المشروع عبارة عن استكشاف عميق لبناء خادم ويب وظيفي بالكامل باستخدام <span class="epoll">C++98</span>. يقوم الخادم بمعالجة عدة اتصالات عملاء متزامنة باستخدام المقابس غير المحجوبة ونظام <span class="epoll">epoll</span>، مما يضمن قابلية التوسع العالية وكفاءة استخدام الموارد. كما ينفذ دورة طلب واستجابة كاملة لبروتوكول HTTP/1.1، مما يمنحنا فهماً عملياً لبرمجة الشبكات وتصميم البروتوكولات.</p>
+</div>
+
+<div class="card">
+    <h2>بنية غير محجوبة</h2>
+    <p>قمنا بتصميم خادم <span class="epoll">غير محجوب</span> يتعامل مع عدة طلبات بالتوازي، مما يضمن كفاءة استخدام الموارد واستجابة ممتازة حتى تحت ضغط التحميل العالي.</p>
+</div>
+
+<div class="card">
+    <h2>epoll لمعالجة I/O قابلة للتوسع</h2>
+    <p>من خلال استخدام <span class="epoll">epoll</span>، قمنا بتقليل عبء إدارة الاتصالات، مما مكننا من تنفيذ معالجة أحداث قابلة للتوسع مع تقليل استهلاك وحدة المعالجة المركزية.</p>
+</div>
+
+<div class="card">
+    <h2>تحليل بروتوكول HTTP/1.1</h2>
+    <p>قمنا بتنفيذ فهم عميق لبروتوكول <span class="epoll">HTTP/1.1</span> — بدءاً من تحليل سطر الطلب واستخراج الترويسات، مع التأكد من التزام الخادم بمواصفات البروتوكول في كل من الطلبات والاستجابات.</p>
+</div>
+
+<div class="card">
+    <h2>C++98 — العودة للأساسيات</h2>
+    <p>الالتزام بـ <span class="epoll">C++98</span> علمنا كيفية إدارة الموارد يدوياً وكتابة كود منخفض المستوى وقوي يتفاعل بشكل مباشر مع طبقة الشبكة في نظام التشغيل.</p>
+</div>
+
+<div class="card">
+    <h2>من نحن</h2>
+    <p>تم إنجاز هذا المشروع بواسطتنا — بدافع الفضول والشغف ببرمجة الأنظمة. معاً استكشفنا عالم المقابس، الحلقات الحدثية، ومنطق البروتوكولات. لقد ساعدنا تعاوننا في تجاوز كل خطأ وكل حالة طرفية، مما جعل الخادم تعليميًا وجاهزًا للإنتاج. نحن نؤمن بكتابة كود نظيف وفعال وهادف — حتى ضمن قيود <span class="epoll">C++98</span>!</p>
+</div>
+
+<div class="footer">
+    صُنع بكل ♥ حب لعشاق برمجة الأنظمة وهندسة الويب.
+</div>
+
+</body>
+</html>

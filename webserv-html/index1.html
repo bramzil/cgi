@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++98 Webserver Project</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: start;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: fadeIn 1.2s ease forwards;
+        }
+        header h1 {
+            font-size: 3rem;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .profile img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            margin-bottom: 1rem;
+        }
+        .profile h2 {
+            font-size: 1.4rem;
+            color: #2563eb;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            padding: 2rem;
+            max-width: 900px;
+            margin: 1.5rem;
+            backdrop-filter: blur(8px);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+        .card h2 {
+            color: #2563eb;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        .card p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            font-size: 1.05rem;
+            color: #334155;
+        }
+        .epoll {
+            color: #16a34a;
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: auto;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 3rem;
+            color: #475569;
+        }
+        @keyframes fadeIn {
+            0% {opacity: 0; transform: translateY(-20px);}
+            100% {opacity: 1; transform: translateY(0);}
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Our C++98 Webserver Journey</h1>
+</header>
+
+<div class="profile">
+    <img src="file.jpg" alt="Profile Picture">
+    <h2>Hello, We're the Developers</h2>
+</div>
+
+<div class="card">
+    <h2>Project Overview</h2>
+    <p>This project is a deep dive into building a fully functional webserver using <span class="epoll">C++98</span>. Our server handles multiple simultaneous client connections using non-blocking sockets and the <span class="epoll">epoll</span> system call, ensuring high scalability and efficient use of resources. It also implements a complete HTTP/1.1 request-response cycle, providing a hands-on understanding of both network programming and protocol design.</p>
+</div>
+
+<div class="card">
+    <h2>Non-Blocking Architecture</h2>
+    <p>We designed a <span class="epoll">non-blocking</span> server that handles multiple requests in parallel, ensuring efficient resource use and responsiveness even under high load.</p>
+</div>
+
+<div class="card">
+    <h2>epoll for Scalable I/O</h2>
+    <p>By using <span class="epoll">epoll</span>, we minimized the overhead of managing connections, enabling scalable event-driven processing with minimal CPU usage.</p>
+</div>
+
+<div class="card">
+    <h2>HTTP/1.1 Protocol Parsing</h2>
+    <p>We implemented a deep understanding of <span class="epoll">HTTP/1.1</span> — from request-line parsing to header extraction, ensuring the server adheres to the protocol specification for both requests and responses.</p>
+</div>
+
+<div class="card">
+    <h2>C++98 — Back to Basics</h2>
+    <p>Sticking to <span class="epoll">C++98</span> taught us to manage resources manually and write robust, low-level code that interacts tightly with the OS network stack.</p>
+</div>
+
+<div class="card">
+    <h2>About Us</h2>
+    <p>This project was brought to life by us — driven by curiosity and passion for systems programming. Together we explored the intricate world of network sockets, event loops, and protocol logic. Our collaborative effort helped us push through every bug and edge case, making the server both educational and production-grade. We believe in writing clean, efficient, and purposeful code — even in the constraints of <span class="epoll">C++98</span>!</p>
+</div>
+
+<div class="footer">
+    Built with ♥ for systems programming & web architecture.
+</div>
+
+</body>
+</html>
