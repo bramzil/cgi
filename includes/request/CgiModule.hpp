@@ -18,7 +18,7 @@ class CgiModule {
         virtual ~CgiModule();
 
     private:
-        char**                              arguments;
+        char*                               arguments[3];
         char**                              envVariables;
         int                                 fds[2];
         pid_t                               childPid;

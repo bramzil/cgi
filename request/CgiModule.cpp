@@ -10,10 +10,8 @@ void    CgiModule::setCgiParamters(std::map<std::string, std::string>& headers) 
     while (it != ed) {
         headerField = toUpperCaseString(it->first);
         headerField = replaceSetOfCharacters(headerField, "-", '_');
-        headerField = headerField + "=" + it->second;
-        envVariables[i] = new char[headerField.size() + 1];
-        memcpy(envVariables[i], headerField.c_str(), headerField.size());
-        envVariables[i][headerField.size()] = '\0';
+        requestHeaders.push_back(headerField + "=" + it->second);
+        envVariables[i] = (char*)requestHeaders.back().c_str();
         it++, i++;
     }
     envVariables[i] = NULL;
@@ -76,13 +74,8 @@ CgiModule::CgiModule(std::vector<std::string> parameters) {
     else {
         fds[0] = fds[1] = -1;
         requirements    = parameters;
-        arguments       = new char*[3];
-        arguments[0]    = new char[requirements[0].size() + 1];
-        memcpy(arguments[0], requirements[0].c_str(), requirements[0].size());
-        arguments[0][requirements[0].size()] = '\0';
-        arguments[1]    = new char[requirements[1].size() + 1];
-        memcpy(arguments[1], requirements[1].c_str(), requirements[1].size());
-        arguments[1][requirements[1].size()] = '\0';
+        arguments[0]    = (char*)requirements[0].c_str();
+        arguments[1]    = (char*)requirements[1].c_str();
         arguments[2]    = NULL;
     }
 }
