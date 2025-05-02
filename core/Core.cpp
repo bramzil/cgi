@@ -72,7 +72,7 @@ void    Core::connectionHandler(epoll_event& event) {
     RequestProcessor    *processor;
     Response            *response;
 
-    std::cout << "\n+++++++++++++++ content +++++++++++++++++\n";
+    // std::cout << "\n+++++++++++++++ content +++++++++++++++++\n";
     connection = (Connection*) event.data.ptr;
     if (!connection->getMessageInstance())
         connection->setMessageInstance(new Request(connection->getSocket()));
@@ -84,7 +84,7 @@ void    Core::connectionHandler(epoll_event& event) {
         requestHandler(request, connection);
     else
         throw ("stop running from connectionHandler");
-    std::cout << "\n+++++++++++++++++++++++++++++++++++++++++\n";
+    // std::cout << "\n+++++++++++++++++++++++++++++++++++++++++\n";
 }
 
 void    Core::requestHandler(Request* request, Connection* connection) {

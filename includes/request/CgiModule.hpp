@@ -18,8 +18,8 @@ class CgiModule {
         virtual ~CgiModule();
 
     private:
-        const char*                         arguments[2];
-        const char**                        envVariables;
+        char**                              arguments;
+        char**                              envVariables;
         int                                 fds[2];
         pid_t                               childPid;
         int                                 exitStatus;

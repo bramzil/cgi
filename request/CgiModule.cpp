@@ -2,18 +2,21 @@
 
 void    CgiModule::setCgiParamters(std::map<std::string, std::string>& headers) {
     size_t i = 0;
-    std::string fieldName;
+    std::string headerField;
     std::map<std::string, std::string>::const_iterator it, ed;
 
     it = headers.begin(), ed = headers.end();
-    envVariables = new const char*[headers.size()];
+    envVariables = new char*[headers.size() + 1];
     while (it != ed) {
-        fieldName = toUpperCaseString(it->first);
-        fieldName = replaceSetOfCharacters(fieldName, "-", '_');
-        requestHeaders.push_back(fieldName + "=" + it->second);
-        envVariables[i] = requestHeaders.back().c_str();
+        headerField = toUpperCaseString(it->first);
+        headerField = replaceSetOfCharacters(headerField, "-", '_');
+        headerField = headerField + "=" + it->second;
+        envVariables[i] = new char[headerField.size() + 1];
+        memcpy(envVariables[i], headerField.c_str(), headerField.size());
+        envVariables[i][headerField.size()] = '\0';
         it++, i++;
     }
+    envVariables[i] = NULL;
 }
 
 void    CgiModule::duplicateChildInputOutput( void ) {
@@ -31,9 +34,9 @@ void    CgiModule::runCgiScript( void ) {
             throw ("chdir failed to change directoryt");
         else {
             duplicateChildInputOutput();
-            if (execve(arguments[0], (char* const*)arguments, (char* const*)envVariables) == -1)
+            if (execve(arguments[0], arguments, envVariables) == -1)
                 throw ("execve failed to execute script");
-            }  
+        }
     } catch (...) {
         exit(1);
     }
@@ -48,24 +51,19 @@ void    CgiModule::createChildProcess( void ) {
     }
     if ((childPid = fork()) == -1)
         throw ("fork failed to create a child");
-    else if (childPid == 0) {
+    else if (childPid == 0)
         runCgiScript();
-        exit(1);
-    } else
+    else
         close (fds[1]), fds[1] = -1;
 }
 
 bool    CgiModule::isDone( void ) {
     int status;
 
-    if (0 < waitpid(childPid, &status, WNOHANG)) {
-        if (WIFSIGNALED(status)) {
-            std::cout << "signaled: " << WTERMSIG(status) << std::endl;
+    if (childPid == waitpid(childPid, &status, WNOHANG)) {
+        if (WIFSIGNALED(status)) 
             throw ("child was signaled");
-        } else if (WIFEXITED(status) != 0) {
-            std::cout << "hello2\n";
-            throw ("exited with error");
-        } else
+        else
             return (true);
     }
     return (false);
@@ -78,8 +76,14 @@ CgiModule::CgiModule(std::vector<std::string> parameters) {
     else {
         fds[0] = fds[1] = -1;
         requirements    = parameters;
-        arguments[0]    = requirements[0].c_str(); //executable path.
-        arguments[1]    = requirements[1].c_str(); //script name.
+        arguments       = new char*[3];
+        arguments[0]    = new char[requirements[0].size() + 1];
+        memcpy(arguments[0], requirements[0].c_str(), requirements[0].size());
+        arguments[0][requirements[0].size()] = '\0';
+        arguments[1]    = new char[requirements[1].size() + 1];
+        memcpy(arguments[1], requirements[1].c_str(), requirements[1].size());
+        arguments[1][requirements[1].size()] = '\0';
+        arguments[2]    = NULL;
     }
 }
 
@@ -90,5 +94,5 @@ CgiModule::~CgiModule() {
         close (fds[1]);
     if (!isDone())
         kill(childPid, 9);
-    // delete envVariables;
+    delete [] envVariables;
 }
